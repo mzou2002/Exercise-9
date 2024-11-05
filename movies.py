@@ -5,7 +5,12 @@ import pandas as pd
 import sys
 
 
-# Replace this comment with your implementation of best_movies().
+
+def best_movies(movies, ratings):
+    movie = pd.read_csv(movies)
+    rating = pd.read_csv(ratings)
+
+    inner_merge = pd.merge(movie, rating, left='movie id',right='item id', how='inner')
 
 
 def parse_args(arglist):
