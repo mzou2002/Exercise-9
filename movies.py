@@ -5,13 +5,15 @@ import pandas as pd
 import sys
 
 
-
 def best_movies(movies, ratings):
     movie = pd.read_csv(movies)
     rating = pd.read_csv(ratings)
 
     inner_merge = pd.merge(movie, rating, left='movie id',right='item id', how='inner')
 
+    average_ratings = inner_merge.groupby('title')['rating'].mean()
+
+    return average_ratings.sort_values(ascending=False)
 
 def parse_args(arglist):
     """ Parse command-line arguments.
